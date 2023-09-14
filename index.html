@@ -1,0 +1,457 @@
+<meta http-equiv='cache-control' content='no-cache'> 
+<meta http-equiv='expires' content='0'> 
+<meta http-equiv='pragma' content='no-cache'>
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style type="text/css">
+	* {box-sizing: border-box;}
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		15px 15px 0 0px #fff, /* The fourth layer */
+		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		20px 20px 0 0px #fff, /* The fifth layer */
+		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		25px 25px 0 0px #fff, /* The fifth layer */
+		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+	.img-zoom-container {
+	  position: relative;
+	}
+	
+	.img-zoom-lens {
+	  position: absolute;
+	  border: 1px solid #d4d4d4;
+	  /*set the size of the lens:*/
+	  width: 40px;
+	  height: 40px;
+	}
+	
+	.img-zoom-result {
+	  border: 1px solid #d4d4d4;
+	  /*set the size of the result div:*/
+	  width: 300px;
+	  height: 300px;
+	}
+	
+	.parent{
+	    width: 90%;
+	    float: left;
+	}
+	
+	.first {
+	    float: left;
+	    width:30%;
+	    box-sizing: border-box;
+	}
+	
+	.second{
+	    float: left;
+	    width:30%;
+	    box-sizing: border-box;
+	}
+	
+	.third{
+	    float: left;
+	    width:30%;
+	    box-sizing: border-box;
+	}
+</style>
+
+<!-- Script -->
+<script>
+function imageZoom(imgID1, imgID2, imgID3, resultID1, resultID2, resultID3) {
+  var img1, img2, img3, lens1, lens2, lens3, result1, result2, result3, cx, cy;
+  img1 = document.getElementById(imgID1);
+  img2 = document.getElementById(imgID2);
+  img3 = document.getElementById(imgID3);
+  result1 = document.getElementById(resultID1);
+  result2 = document.getElementById(resultID2);
+  result3 = document.getElementById(resultID3);
+  
+  
+  /*create lens:*/
+  lens1 = document.createElement("DIV");
+  lens1.setAttribute("class", "img-zoom-lens");
+  lens1.setAttribute("id", "first_lens");
+  
+  lens2 = document.createElement("DIV");
+  lens2.setAttribute("class", "img-zoom-lens");
+  lens2.setAttribute("id", "second_lens");
+  
+  lens3 = document.createElement("DIV");
+  lens3.setAttribute("class", "img-zoom-lens");
+  lens3.setAttribute("id", "third_lens");
+  
+  /*insert lens:*/
+  img1.parentElement.insertBefore(lens1, img1);
+  img2.parentElement.insertBefore(lens2, img2);
+  img3.parentElement.insertBefore(lens3, img3);
+  /*calculate the ratio between result DIV and lens:*/
+  cx = result1.offsetWidth / lens1.offsetWidth;
+  cy = result1.offsetHeight / lens1.offsetHeight;
+  /*set background properties for the result DIV:*/
+  result1.style.backgroundImage = "url('" + img1.src + "')";
+  result1.style.backgroundSize = (img1.width * cx) + "px " + (img1.height * cy) + "px";
+  
+  result2.style.backgroundImage = "url('" + img2.src + "')";
+  result2.style.backgroundSize = (img2.width * cx) + "px " + (img2.height * cy) + "px";
+  
+  result3.style.backgroundImage = "url('" + img3.src + "')";
+  result3.style.backgroundSize = (img3.width * cx) + "px " + (img3.height * cy) + "px";
+  /*execute a function when someone moves the cursor over the image, or the lens:*/
+  lens1.addEventListener("mousemove", moveLens);
+  lens2.addEventListener("mousemove", moveLens);
+  lens3.addEventListener("mousemove", moveLens);
+  img1.addEventListener("mousemove", moveLens);
+  img2.addEventListener("mousemove", moveLens);
+  img3.addEventListener("mousemove", moveLens);
+  /*and also for touch screens:*/
+  lens1.addEventListener("touchmove", moveLens);
+  lens2.addEventListener("touchmove", moveLens);
+  lens3.addEventListener("touchmove", moveLens);
+  img1.addEventListener("touchmove", moveLens);
+  img2.addEventListener("touchmove", moveLens);
+  img3.addEventListener("touchmove", moveLens);
+  function moveLens(e) {
+    var pos, x, y;
+var first_box = document.getElementById("first_box");
+	  var second_box = document.getElementById("second_box");
+var first_box_width = first_box.offsetWidth;
+var first_box_top = first_box.offsetTop;
+var first_box_left= first_box.offsetLeft;
+	  var first_box_bottom= first_box.offsetBottom;
+	  var first_box_right= first_box.offsetRight;
+	  var second_box_left = second_box.offsetLeft;
+    /*prevent any other actions that may occur when moving over the image:*/
+    e.preventDefault();
+    /*get the cursor's x and y positions:*/
+    pos = getCursorPos(e);
+    /*calculate the position of the lens:*/
+    x = pos.x - (lens1.offsetWidth / 2);
+    y = pos.y - (lens1.offsetHeight / 2);
+    /*prevent the lens from being positioned outside the image:*/
+    if (x > img1.width - lens1.offsetWidth) {x = img1.width - lens1.offsetWidth;}
+    if (x < 0) {x = 0;}
+    if (y > img1.height - lens1.offsetHeight) {y = img1.height - lens1.offsetHeight;}
+    if (y < 0) {y = 0;}
+    /*set the position of the lens:*/
+	  
+	var lens1_left = pos.x - 0.5 *lens1.offsetWidth + first_box_left;
+	  if(lens1_left <= first_box_left){
+		  lens1_left = first_box_left;
+	  }
+	  if(lens1_left >= second_box_left - lens1.offsetWidth){
+		  lens1_left = second_box_left - lens1.offsetWidth;
+	  }
+    lens1.style.left = lens1_left+"px";
+
+	  var lens1_top = pos.y - 0.5 *lens1.offsetHeight +first_box_top;
+	  if(lens1_top <= first_box_top){
+		  lens1_top = first_box_top;
+	  }
+	  if(lens1_top >= first_box_top + img1.offsetHeight){
+		  lens1_top = first_box_top + img1.offsetHeight;
+	  }
+    lens1.style.top =lens1_top + "px";
+	 
+    
+    lens2.style.left = lens1_left + first_box_width + "px";
+    lens2.style.top = lens1_top+ "px";
+    // console.log(lens2.style.top)
+    var second_box = document.getElementById("second_box");
+    var second_box_width = second_box.offsetWidth;
+    lens3.style.left = lens1_left + first_box_width + second_box_width +"px";
+    lens3.style.top = lens1_top + "px";
+    /*display what the lens "sees":*/
+    result1.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+    result2.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+    result3.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+  }
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /*get the x and y positions of the image:*/
+    a = img1.getBoundingClientRect();
+    /*calculate the cursor's x and y coordinates, relative to the image:*/
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /*consider any page scrolling:*/
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+</script>
+
+<html>
+<head>
+
+	<title>RefQSR</title>
+	<meta property="og:image" content="./resources/overview.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+	<meta property="og:title" content="RefQSR: Reference-based Quantization for Image Super-Resolution Networks" />
+	<meta property="og:description" content="Paper description." />
+
+	<!-- Get from Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src=""></script> 
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-75863369-6');
+	</script>
+</head>
+
+<body>   
+	<br>
+	<center>
+		<span style="font-size:36px">RefQSR: Reference-based Quantization for Image <br> Super-Resolution Networks<br>  </span>
+		<table align=center width=900px>
+			<table align=center width=900px>
+				<tr>
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:24px"><a href=".">Hongjae Lee</a><sup>*</sup>,</span>
+						</center>
+					</td>
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:24px"><a href=".">Jun-Sang Yoo</a>,</span>
+						</center>
+					</td><td align=center width=100px>
+						<center>
+							<span style="font-size:24px"><a href=".">Seung-Won Jung</a><sup>†</sup>,</span>
+						</center>
+					</td>
+				</tr>
+			</table>
+
+			<table align=center width=800px>
+				<tr>
+					<td align=center width=150px>
+						<center>
+							<span style="font-size:20px">Korea University</a></span>
+						</center>
+					</td>
+				</tr>
+				<tr>
+					<td align=center width=150px>
+						<center>
+							<small><sup>†</sup>Corresponding author </small>
+						</center>
+					</td>
+				</tr>
+			</table>   
+
+	<center>
+		<table align=center width=850px>			
+			<tr>
+				<td width=850px>
+					<center>
+						<img class="round" style="width:850px" src="./Source/fig2.png"/>
+					</center>
+					</center>
+						Examples of patch-wise bit selections of (b) CADyQ and (c) CADyQ-RefQSR for the SRResNet baseline, where the darker the patches, the higher the average bit precision. Note that CADyQ allocates higher bit precision to many patches with textual details, whereas CADyQ-RefQSR utilizes image self-similarity to prevent assigning high-bit precision to similar patches. <br><br>
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<hr>
+	<div style="display:inline-block;">
+	<div >
+	      <div id="first_box" class="first">
+	        <img id="myimage" src="https://i.postimg.cc/Y0hq1pvS/shoe-img.jpg" width="300" height="240">
+	        <div id="myresult" class="img-zoom-result"></div>
+	      </div>
+	  
+	      <div id="second_box" class="second">
+	        <img id="myimage_2" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Ball%2C_%E0%B4%AA%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D.JPG" width="300" height="240">
+	        <div id="myresult_2" class="img-zoom-result"></div>
+	      </div>
+	  
+	      <div id="third_box" class="third">
+	        <img id="myimage_3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/BASA-3K-7-422-11-1896_Summer_Olympics.jpg/220px-BASA-3K-7-422-11-1896_Summer_Olympics.jpg" width="300" height="240">
+	        <div id="myresult_3" class="img-zoom-result"></div>
+	      </div>
+	</div>
+	</div>
+	<script>
+	imageZoom("myimage", "myimage_2", "myimage_3", "myresult", "myresult_2", "myresult_3");
+	</script>
+	
+	<hr>
+	
+	<table align=center width=850px>
+		<h1 style="text-align:center">Qualitative Results</h1>
+
+		<table align=center width=420px></table>
+		<tr>
+			<td align=center width=850px>
+				<center>
+					<td><img class="round" style="width:850px" src="./Source/result_project_srresnet_ddtb.png"/></td>
+				</center>
+			</td>
+		</tr>
+		</table>
+		<table align=center width=850px>
+			<center>
+				<tr>
+					<td>
+						 Visual comparison of DDTB and DDTB-RefQSR on SRResNet for scale factor of 2.
+					</td>
+				</tr>
+			</center>
+		</table>
+
+	<hr>
+
+	<table align=center width=850px>
+		<center><h1>Quantitative Results</h1></center>
+
+		<table align=center width=420px></table>
+		<tr>
+			<td align=center width=850px>
+				<center>
+					<td><img class="round" style="width:850px" src="./Source/srresnetx2.png"/></td>
+				</center>
+			</td>
+		</tr>
+		</table>
+		<table align=center width=850px>
+			<center>
+				<tr>
+					<td>
+						 Quantitative comparisons of various quantization methods on SRResNet for scale factor of 2.
+					</td>
+				</tr>
+			</center>
+		</table>
+
+	<hr>
+
+			
+	<table align=center width=900px>
+		<tr>
+			<td width=400px>
+				<left>
+					<center><h1>Acknowledgements</h1></center>
+
+					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
+
+				</left>
+			</td>
+		</tr>
+	</table>
+
+<br>
+</body>
+</html>
+
