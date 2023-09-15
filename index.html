@@ -309,7 +309,29 @@ var first_box_left= first_box.offsetLeft;
 }
 
 function openImg(e){
+	
   alert(e.src);
+
+var img1 = document.getElementById(imgID1);
+  var img2 = document.getElementById(imgID2);
+  var img3 = document.getElementById(imgID3);
+  var result1 = document.getElementById(resultID1);
+  var result2 = document.getElementById(resultID2);
+  var result3 = document.getElementById(resultID3);
+
+	img1.src = e.src;
+	
+	img2.src = e.src;
+	
+	img3.src = e.src;
+	result1.style.backgroundImage = "url('" + img1.src + "')";
+  result1.style.backgroundSize = (img1.width * cx) + "px " + (img1.height * cy) + "px";
+  
+  result2.style.backgroundImage = "url('" + img2.src + "')";
+  result2.style.backgroundSize = (img2.width * cx) + "px " + (img2.height * cy) + "px";
+  
+  result3.style.backgroundImage = "url('" + img3.src + "')";
+  result3.style.backgroundSize = (img3.width * cx) + "px " + (img3.height * cy) + "px";
 }
 </script>
 
