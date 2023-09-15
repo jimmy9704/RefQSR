@@ -138,7 +138,28 @@
 	  width: 300px;
 	  height: 300px;
 	}
+	.parent_text{
+	    width: 90%;
+	    float: left;
+	}
 	
+	.first_text {
+	    float: left;
+	    width:33%;
+	    box-sizing: border-box;
+	}
+	
+	.second_text{
+	    float: left;
+	    width:33%;
+	    box-sizing: border-box;
+	}
+	
+	.third_text{
+	    float: left;
+	    width:33%;
+	    box-sizing: border-box;
+	}
 	.parent{
 	    width: 90%;
 	    float: left;
@@ -445,9 +466,7 @@ var img1 = document.getElementById("myimage");
 	<div class="marquee">
 	  <div class="track">
 	    <div class="content">
-	      <img
-	  class="ball" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Ball%2C_%E0%B4%AA%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D.JPG/330px-Ball%2C_%E0%B4%AA%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D.JPG" onclick="openImg(this)"
-	/>
+	      <img class="img" src="/vizualization/img001.png" onclick="openImg(this)" >
 	 <img
 	  class="ball" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Ball%2C_%E0%B4%AA%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D.JPG/330px-Ball%2C_%E0%B4%AA%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D.JPG" onclick="openImg(this)"
 	/>
@@ -490,15 +509,15 @@ var img1 = document.getElementById("myimage");
 
 	<div style="display:inline-block;">
 	<div >
-	      <div id="first_box" class="first">
+	      <div id="first_box" class="first_text">
 		<h1>GT</h1>
 	      </div>
 	  
-	      <div id="second_box" class="second">
+	      <div id="second_box" class="second_text">
 		<h1>CADyQ (δbit)</h1>
 	      </div>
 	  
-	      <div id="third_box" class="third">
+	      <div id="third_box" class="third_text">
 		<h1>CADyQ-RefQSR (δ-3bit)</h1>
 	      </div>
 	</div>
