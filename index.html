@@ -186,7 +186,7 @@
 	  position: relative;
 	  width: 100vw;
 	  max-width: 100%;
-	  height: 300px;
+	  height: 110px;
 	  overflow-x: hidden;
 	}
 	
@@ -197,8 +197,8 @@
 	  animation: marquee 15s linear infinite;
 	}
 	.img{
-	    width: 80px;
-	    height: 80px;
+	    width: 100px;
+	    height: 100px;
 	}
 	@keyframes marquee {
 	  from { transform: translateX(0); }
@@ -345,12 +345,11 @@ var img1 = document.getElementById("myimage");
   var result2 = document.getElementById("myresult_2");
   var result3 = document.getElementById("myresult_3");
 
-	img1.src = e.src;
+  img1.src = e.src;	
+  img2.src = e.src.replace(".","_cadyq_x2_SR.");
+  img3.src = e.src.replace(".","_cadyq_refqsr_x2_SR.");
 	
-	img2.src = e.src;
-	
-	img3.src = e.src;
-	var cx = result1.offsetWidth / 40;
+  var cx = result1.offsetWidth / 40;
   var cy = result1.offsetHeight / 40;
 	result1.style.backgroundImage = "url('" + img1.src + "')";
   result1.style.backgroundSize = (img1.width * cx) + "px " + (img1.height * cy) + "px";
