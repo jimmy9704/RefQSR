@@ -333,12 +333,7 @@ var first_box_left= first_box.offsetLeft;
 }
 
 function openImg(e){
-	// 001.png
-	// 001_ddtb.png
-	// 00_refqsr.png
-  // alert(e.src);
-// "myimage", "myimage_2", "myimage_3", "myresult", "myresult_2", "myresult_3"
-var img1 = document.getElementById("myimage");
+  var img1 = document.getElementById("myimage");
   var img2 = document.getElementById("myimage_2");
   var img3 = document.getElementById("myimage_3");
   var result1 = document.getElementById("myresult");
@@ -346,8 +341,8 @@ var img1 = document.getElementById("myimage");
   var result3 = document.getElementById("myresult_3");
 
   img1.src = e.src;	
-  img2.src = e.src.replace(".","_cadyq_x2_SR.");
-  img3.src = e.src.replace(".","_cadyq_refqsr_x2_SR.");
+  img2.src = e.src.replace(".png","_cadyq_x2_SR.png");
+  img3.src = e.src.replace(".png","_cadyq_refqsr_x2_SR.png");
 	
   var cx = result1.offsetWidth / 40;
   var cy = result1.offsetHeight / 40;
