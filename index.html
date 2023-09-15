@@ -324,8 +324,8 @@ var img1 = document.getElementById("myimage");
 	img2.src = e.src;
 	
 	img3.src = e.src;
-	cx = result1.offsetWidth / 40;
-  cy = result1.offsetHeight / 40;
+	var cx = result1.offsetWidth / 40;
+  var cy = result1.offsetHeight / 40;
 	result1.style.backgroundImage = "url('" + img1.src + "')";
   result1.style.backgroundSize = (img1.width * cx) + "px " + (img1.height * cy) + "px";
   
