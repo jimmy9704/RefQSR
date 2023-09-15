@@ -209,7 +209,7 @@
 
 <!-- Script -->
 <script>
-function imageZoom(imgID1, imgID2, imgID3, resultID1, resultID2, resultID3) {
+function imageZoom(imgID1, imgID2, imgID3, resultID1, resultID2, resultID3, box1, box2) {
   var img1, img2, img3, lens1, lens2, lens3, result1, result2, result3, cx, cy;
   img1 = document.getElementById(imgID1);
   img2 = document.getElementById(imgID2);
@@ -264,8 +264,8 @@ function imageZoom(imgID1, imgID2, imgID3, resultID1, resultID2, resultID3) {
   img3.addEventListener("touchmove", moveLens);
   function moveLens(e) {
     var pos, x, y;
-var first_box = document.getElementById("first_box");
-	  var second_box = document.getElementById("second_box");
+var first_box = document.getElementById(box1);
+	  var second_box = document.getElementById(box2);
 var first_box_width = first_box.offsetWidth;
 var first_box_top = first_box.offsetTop;
 var first_box_left= first_box.offsetLeft;
@@ -575,21 +575,21 @@ function openImg_test2k(e){
 	      </div>
 	</div>
 	<div >
-	      <div id="first_box" class="first_text">
+	      <div id="first_box_text" class="first_text">
 		<h1>GT</h1>
 	      </div>
 	  
-	      <div id="second_box" class="second_text">
+	      <div id="second_box_text" class="second_text">
 		<h1>CADyQ (δbit)</h1>
 	      </div>
 	  
-	      <div id="third_box" class="third_text">
+	      <div id="third_box_text" class="third_text">
 		<h1>CADyQ-RefQSR (δ-3bit)</h1>
 	      </div>
 	</div>
 	</div>
 	<script>
-	imageZoom("myimage", "myimage_2", "myimage_3", "myresult", "myresult_2", "myresult_3");
+	imageZoom("myimage", "myimage_2", "myimage_3", "myresult", "myresult_2", "myresult_3", "first_box", "second_box");
 	</script>
 
 	<hr>
@@ -671,37 +671,37 @@ function openImg_test2k(e){
 
 	<div style="display:inline-block;">
 	<div >
-	      <div id="first_box" class="first">
+	      <div id="first_box_test2k" class="first">
 	        <img id="myimage_test2k" src="./vizualization/1201.png" width="320" height="240", style="border:3px solid red" >
 	        <div id="myresult_test2k" class="img-zoom-result"></div>
 	      </div>
 	  
-	      <div id="second_box" class="second">
+	      <div id="second_box_test2k" class="second">
 	        <img id="myimage_test2k_2" src="./vizualization/1201_cadyq_x2_SR.png" width="320" height="240", style="border:3px solid white; margin-left: 5; margin-right: 45">
 	        <div id="myresult_test2k_2" class="img-zoom-result"></div>
 	      </div>
 	  
-	      <div id="third_box" class="third">
+	      <div id="third_box_test2k" class="third">
 	        <img id="myimage_test2k_3" src="./vizualization/1201_cadyq_refqsr_x2_SR.png" width="320" height="240", style="border:3px solid white">
 	        <div id="myresult_test2k_3" class="img-zoom-result"></div>
 	      </div>
 	</div>
 	<div >
-	      <div id="first_box" class="first_text">
+	      <div id="first_box_text_test2k" class="first_text">
 		<h1>GT</h1>
 	      </div>
 	  
-	      <div id="second_box" class="second_text">
+	      <div id="second_box_text_test2k" class="second_text">
 		<h1>CADyQ (δbit)</h1>
 	      </div>
 	  
-	      <div id="third_box" class="third_text">
+	      <div id="third_box_text_test2k" class="third_text">
 		<h1>CADyQ-RefQSR (δ-3bit)</h1>
 	      </div>
 	</div>
 	</div>
 	<script>
-	imageZoom("myimage_test2k", "myimage_test2k_2", "myimage_test2k_3", "myresult_test2k", "myresult_test2k_2", "myresult_test2k_3");
+	imageZoom("myimage_test2k", "myimage_test2k_2", "myimage_test2k_3", "myresult_test2k", "myresult_test2k_2", "myresult_test2k_3", "first_box_test2k", "second_box_test2k");
 	</script>
 	
 	<hr>
